@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://drascb10swcnb"]
+
+[ext_resource type="Texture2D" uid="uid://cidcefxtghhu4" path="res://Assets/astronaut.png" id="1_oxbot"]
+[ext_resource type="Script" uid="uid://djgfalherbt81" path="res://Scripts/astronaut.gd" id="1_r5njw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ktxv1"]
+size = Vector2(15, 22.78)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r5njw"]
+atlas = ExtResource("1_oxbot")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxubg"]
+atlas = ExtResource("1_oxbot")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hr0c"]
+atlas = ExtResource("1_oxbot")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5lapx"]
+atlas = ExtResource("1_oxbot")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o54e2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r5njw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nxubg")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hr0c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5lapx")
+}],
+"loop": 1,
+"name": &"move",
+"speed": 5.0
+}]
+
+[node name="Astronaut" type="CharacterBody2D" unique_id=988482192]
+scale = Vector2(2, 2)
+collision_mask = 30
+script = ExtResource("1_r5njw")
+
+[node name="ObstacleCollision" type="CollisionShape2D" parent="." unique_id=1058597043]
+position = Vector2(0, -3.375)
+shape = SubResource("RectangleShape2D_ktxv1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=582141290]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_o54e2")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.02282339

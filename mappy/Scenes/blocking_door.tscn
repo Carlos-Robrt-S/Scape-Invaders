@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://dyp65e8rp7qx4"]
+
+[ext_resource type="Script" uid="uid://7m4cqo6kpr72" path="res://Scripts/blocking_door.gd" id="1_c4g1c"]
+[ext_resource type="Texture2D" uid="uid://bnk0bkm5tbg06" path="res://Assets/block_door_closed.png" id="2_laer7"]
+[ext_resource type="Texture2D" uid="uid://4rjyv8clfgty" path="res://Assets/block_door_opened.png" id="3_7y74r"]
+[ext_resource type="FontFile" uid="uid://cog4drpjsxyg4" path="res://Assets/Fonte/OpenType (.otf)/PixeloidMono.otf" id="4_laer7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ktxv1"]
+size = Vector2(12, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o54e2"]
+size = Vector2(12, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gpk8t"]
+size = Vector2(8, 64)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ktxv1"]
+font = ExtResource("4_laer7")
+
+[node name="Blocking Door" type="StaticBody2D" unique_id=76573789]
+z_index = -1
+collision_layer = 4
+collision_mask = 11
+script = ExtResource("1_c4g1c")
+door_states_sprites = Array[Texture]([ExtResource("2_laer7"), ExtResource("3_7y74r")])
+
+[node name="Activation Area" type="Area2D" parent="." unique_id=2085767259]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Activation Area" unique_id=270909056]
+position = Vector2(-18, 0)
+shape = SubResource("RectangleShape2D_ktxv1")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Activation Area" unique_id=102078571]
+position = Vector2(18, 0)
+shape = SubResource("RectangleShape2D_o54e2")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=663249030]
+
+[node name="HitBox" type="CollisionShape2D" parent="." unique_id=1004635660]
+shape = SubResource("RectangleShape2D_gpk8t")
+
+[node name="Label" type="Label" parent="." unique_id=658904580]
+offset_left = -19.0
+offset_top = -55.0
+offset_right = 19.0
+offset_bottom = -32.0
+text = "␣"
+label_settings = SubResource("LabelSettings_ktxv1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="body_entered" from="Activation Area" to="." method="_on_activation_area_body_entered"]
+[connection signal="body_exited" from="Activation Area" to="." method="_on_activation_area_body_exited"]

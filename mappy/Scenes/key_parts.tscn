@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://df78tghhhf1hk"]
+
+[ext_resource type="Script" uid="uid://puphxgl20wyd" path="res://Scripts/key_parts.gd" id="1_qb620"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ktxv1"]
+size = Vector2(9, 9)
+
+[node name="Key Parts" type="Area2D" unique_id=1386017142]
+scale = Vector2(2, 2)
+collision_layer = 16
+script = ExtResource("1_qb620")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=742687873]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_ktxv1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1208963700]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

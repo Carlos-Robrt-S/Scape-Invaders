@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://bccp5r0fl2di0"]
+
+[ext_resource type="Script" uid="uid://cd2cnb6ainy0m" path="res://Scripts/fan.gd" id="1_nfiji"]
+[ext_resource type="Texture2D" uid="uid://dtgmjyysvgpmx" path="res://Assets/Fan.png" id="1_rog72"]
+[ext_resource type="Texture2D" uid="uid://dcqtetcnppqqq" path="res://Assets/wind.png" id="3_j6bxr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ktxv1"]
+size = Vector2(32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfiji"]
+atlas = ExtResource("1_rog72")
+region = Rect2(0, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6bxr"]
+atlas = ExtResource("1_rog72")
+region = Rect2(32, 16, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ktxv1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfiji")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6bxr")
+}],
+"loop": 1,
+"name": &"rotate",
+"speed": 20.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dy6y2"]
+size = Vector2(24, 457)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ktxv1"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, 302, 0)
+spread = 163.588
+gravity = Vector3(0, -200, 0)
+linear_accel_min = -2.2351742e-06
+linear_accel_max = -2.2351742e-06
+radial_accel_min = -2.2351742e-06
+radial_accel_max = -2.2351742e-06
+scale_max = 2.5
+
+[node name="Fan" type="StaticBody2D" unique_id=1659087362]
+collision_layer = 4
+collision_mask = 5
+script = ExtResource("1_nfiji")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=672291158]
+shape = SubResource("RectangleShape2D_ktxv1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1573106195]
+sprite_frames = SubResource("SpriteFrames_ktxv1")
+animation = &"rotate"
+autoplay = "rotate"
+frame_progress = 0.74598134
+
+[node name="fanArea" type="Area2D" parent="." unique_id=602884647]
+position = Vector2(0, -67.5)
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fanArea" unique_id=2030580580]
+position = Vector2(0, -169)
+shape = SubResource("RectangleShape2D_dy6y2")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1349635028]
+z_index = -2
+position = Vector2(0, -307)
+amount = 10
+texture = ExtResource("3_j6bxr")
+lifetime = 5.0
+speed_scale = 1.5
+process_material = SubResource("ParticleProcessMaterial_ktxv1")
+
+[connection signal="body_entered" from="fanArea" to="." method="_on_fan_area_body_entered"]
+[connection signal="body_exited" from="fanArea" to="." method="_on_fan_area_body_exited"]

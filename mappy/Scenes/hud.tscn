@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://p8q2y1eekkn8"]
+
+[ext_resource type="Texture2D" uid="uid://3mv82nth0acu" path="res://Assets/key_part_1.png" id="1_6fbih"]
+[ext_resource type="Script" uid="uid://ciqqtinwj84e1" path="res://Scripts/hud.gd" id="1_t1xeu"]
+[ext_resource type="Texture2D" uid="uid://ccuhukyi0m6lk" path="res://Assets/key_part_2.png" id="2_t1xeu"]
+[ext_resource type="Texture2D" uid="uid://dfp452y8cir6a" path="res://Assets/key_part_3.png" id="3_36asn"]
+[ext_resource type="Texture2D" uid="uid://cthf3e61tsjvt" path="res://Assets/key_part_4.png" id="4_8jye8"]
+
+[node name="HUD" type="Control" unique_id=1410042607]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t1xeu")
+
+[node name="KP1" type="Sprite2D" parent="." unique_id=1117409607]
+position = Vector2(-9, -12)
+scale = Vector2(3, 3)
+texture = ExtResource("1_6fbih")
+
+[node name="KP2" type="Sprite2D" parent="." unique_id=1353102013]
+position = Vector2(12.000002, -12)
+scale = Vector2(3, 3)
+texture = ExtResource("2_t1xeu")
+
+[node name="KP3" type="Sprite2D" parent="." unique_id=1439028639]
+position = Vector2(9, 12)
+scale = Vector2(3, 3)
+texture = ExtResource("3_36asn")
+
+[node name="KP4" type="Sprite2D" parent="." unique_id=1616956945]
+position = Vector2(-9, 12)
+scale = Vector2(3, 3)
+texture = ExtResource("4_8jye8")
